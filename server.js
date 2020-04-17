@@ -1,91 +1,71 @@
-const express = require("express"),
-      mongoose = require("mongoose"),
-      passport = require("passport"),
-      bodyParser = require("body-parser"),
-      User = require("./models/user"),
-      localStrategy = require("passport-local"),
-      passportLocalMongoose = require("passport-local-mongoose");
-mongoose.connect("mongodb://localhost:27017/movie_app", {useNewUrlParser: true, useUnifiedTopology: true});
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const expressJWT = require('express-jwt');
+const helmet = require('helmet');
+const RateLimit = require('express-rate-limit');
+const User = require('./models/user');
+const path = require('path');
+
 
 const app = express();
 
-app.use(require("express-session")({
-  secret: "Expecto Patronum",
-  resave: false,
-  saveUninitialized: false
-}));
-app.set('view engine', 'ejs');
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
-passport.use(new localStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.use(helmet());
 
-//=============================
-//ROUTES
+const loginLimiter = new RateLimit({
+  windowMs: 5*60*1000,
+  max: 3,
+  delayMs: 0,
+  message: 'Maximum login attempts exceeded!'
+})
+const signLimiter = new RateLimit({
+  windowMs: 60*60*1000,
+  max: 3,
+  delayMs: 0,
+  message: 'Maximum accounts created please try again later.'
+})
 
-app.get("/", function(req,res) {
-  res.render("home")
-  // res.send("hello")
+mongoose.connect('mongodb://localhost/movie_app', {useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.once('open', () => {
+  console.log(`Connected to Mongo on ${db.host}:${db.port}`);
+});
+db.on('error', (err) => {
+  console.log(`Database error:\n${err}`);
 });
 
-app.get("/secret", isLoggedIn, function(req,res) {
-  res.render("secret")
-});
 
-//AUTH ROUTES
-
-//show sign up form
-app.get("/register", function(req,res) {
-  res.render("register")
-  // res.send("hello from register")
-});
-
-//handle user sign up
-app.post("/register", function(req,res) {
-  req.body.username
-  req.body.password
-  User.register(new User({username: req.body.username}), req.body.password, function(err,user) {
-    if(err) {
-      console.log(err)
-      res.render('register')
-    } else {
-      passport.authenticate("local")(req,res, function() {
-        res.redirect("/")
-      })
-    }
+app.get('/users', (req,res) => {
+  User.find({}, function(err,users){
+    if (err) res.json(err)
+    res.json(users)
   })
+  
+})
+
+app.post('/users', (req,res) => {
+  User.create({
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password
+  }, function(err, user) {
+    res.json(user)
+  })
+})
+
+app.get('/*', (req,res) =>{
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
+// app.use('/auth/login', loginLimiter);
+// app.use('/auth/signup', signLimiter);
 
-//LOGIN ROUTES
+app.use('/auth', require('./routes/auth'));
+app.use('/api', expressJWT({secret: process.env.JWT_SECRET}), require('./routes/api'));
 
-//render login form
-app.get("/login", function(req,res) {
-  res.render("login")
-});
-
-//login logic
-app.post("/login", passport.authenticate("local" , {
-  successRedirect: "/",
-  failureRedirect: "/login"
-}) ,function(req,res) {
-
-});
-
-app.get("/logout", function(req,res) {
-  req.logout();
-  res.redirect("/")
-});
-
-function isLoggedIn(req,res,next) {
-  if(req.isAuthenticated()) {
-    return next()
-  }
-  res.redirect("/login")
-};
-
-app.listen(3000, () => {
-  console.log("Server Started!!!🌎🌎🌎")
+app.listen(process.env.PORT, () => {
+  console.log(`Up and running on port ${process.env.PORT}...`);
 });

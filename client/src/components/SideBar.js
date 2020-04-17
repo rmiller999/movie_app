@@ -2,7 +2,6 @@ import React from 'react';
 
 function SideBar({genres, handleGenreChange, genre, genrePageChange, pages}) {
 
-  console.log(genre)
   return (
     <div className="genres">
       {genres.map((cat,i) => (

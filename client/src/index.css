@@ -34,6 +34,7 @@ main {
 
 section {
   padding: 15px;
+  padding-top: 30px;
 }
 
 .searchbox-wrap {
@@ -85,7 +86,7 @@ section {
 .results {
   display: flex;
   flex-wrap: wrap;
-  margin: 0px -15px;
+  margin: -45px -15px;
 
 }
 
@@ -244,6 +245,7 @@ span.movie-info {
   margin: 0 auto;
   display: inline-block;
   width: 100%;
+  padding: 17px;
 }
 
 #pageBtn {
@@ -448,7 +450,7 @@ img.card:hover {
 
 .genres {
   left: 75px;
-  margin-top: 25px;
+  margin-top: 0px;
   position: absolute;
 }
 
@@ -466,4 +468,153 @@ img.card:hover {
 
 .activeGenre {
   color: #0F9B8E;
+}
+
+.navbar{
+  background-color: #0F9B8E;
+  padding: 25px;
+}
+
+.navbar .navbuttons{
+  float: right;
+  display: inline;
+}
+
+.navbuttons {
+  margin-top: -9px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.navbuttons .login {
+  color: white;
+  border: 3px solid #03719C;
+  border-radius: 8px;
+  padding: 13px;
+  margin: 5px;
+  background-color: #03719C;
+}
+
+/* .navbuttons .login:hover {
+  background-color: #03719C;
+} */
+
+.navbuttons .signup {
+  color: white;
+  border: 3px solid #03719C;
+  border-radius: 8px;
+  padding: 13px;
+}
+
+.navbuttons .signup:hover {
+  background-color: #03719C;
+  transition: 0.4s ease-out;
+}
+
+.navbuttons .userName, .logout{
+  float: right;
+  display: inline;
+}
+
+.navbuttons .userName {
+  padding-right: 15px;
+  color: white;
+}
+
+.navbuttons .logout {
+  color: white;
+  border: 3px solid #03719C;
+  border-radius: 8px;
+  padding: 11px;
+  background-color: #0F9B8E;
+  cursor: pointer;
+  font-size: 19px;
+  margin-top: -16px;
+}
+
+.navbuttons .logout:hover {
+  background-color: #03719C;
+}
+
+.navbar .navTitle {
+  font-size: 20px;
+  margin-top: -10px;
+  color: white;
+  float: left;
+}
+
+.Login {
+  text-align: center;
+  padding: 10px;
+}
+
+.Signup {
+  text-align: center;
+  padding: 10px;
+}
+
+form {
+  text-align: center;
+}
+
+.emailInput, .passwordInput, .nameInput {
+  display: block;
+  width: 40%;
+  padding: 9px;
+  margin-left: 190px;
+
+  border: none;
+  outline: none;
+  background: none;
+
+  background-color: rgb(89, 109, 117);
+  border-radius: 8px;
+
+  color: #FFF;
+  font-size: 18px;
+  font-weight: 300;
+
+  transition: 0.4s ease-out;
+}
+
+.emailInput:hover, .passwordInput:hover, .nameInput:hover {
+  box-shadow: 0px 0px 8px 3px #0F9B8E;
+}
+
+.emailInput:focus, .passwordInput:focus, .nameInput:focus {
+  box-shadow: 0px 0px 8px 3px #0F9B8E;
+}
+
+.submitForm {
+  display: inline-block;
+  padding: 15px 30px;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 800;
+
+  background: #0F9B8E;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+
+  transition: 0.4s ease-out;
+}
+
+.submitForm:hover {
+  background: #03719C;
+}
+
+#loginPopup {
+  width: 50%;
+  margin-top: 5%;
+}
+
+#signupPopup {
+  width: 50%;
+  margin-top: 5%;
 }
