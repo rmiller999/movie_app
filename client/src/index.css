@@ -5,8 +5,9 @@
 }
 
 body {
-  font-family: 'montserrat', sans-serif;
+  /* font-family: 'montserrat', sans-serif; */
   background-color: #223343;
+  font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -112,8 +113,8 @@ section {
 
 .results .result:hover img {
   opacity: 0.5;
-  transform: scale(1.1);
-  box-shadow: 0px 0px 8px 3px #0F9B8E;
+  transform: scale(1.09);
+  box-shadow: 0px 0px 5px 3px #0F9B8E;
 }
 
 .results .result h3 {
@@ -143,7 +144,8 @@ section {
 .results .result:hover h3 {
   /* background: #fff; */
   color: #0F9B8E;
-  transform: scale(1.1); 
+  transform: scale(1.07); 
+  /* font-size: 15px; */
 }
 
 .popup {
@@ -255,7 +257,7 @@ span.movie-info {
 
 #pageBtn {
   display: inline-block;
-  padding: 5px;
+  padding: 7px;
   /* font-size: 22px; */
   color: #FFF;
   background-color: #223343;
@@ -268,7 +270,7 @@ span.movie-info {
 #pageBtn:hover {
   border: 1.5px solid #0F9B8E;
   border-radius: 14px;
-  font-weight: 300;
+  /* font-weight: 300; */
   /* background-color: white; */
   color: #0F9B8E;
   margin: 0;
@@ -287,7 +289,7 @@ span.movie-info {
 button.active {
   border: 1.5px solid #0F9B8E !important;
   border-radius: 14px;
-  font-weight: 600;
+  font-weight: 500;
   /* background-color: white; */
   color: #0F9B8E !important;
   margin: 0;
@@ -389,6 +391,8 @@ img.card:hover {
 
 .card-video {
   display: inline-block;
+  background:url(../src/loading.gif) center center no-repeat;
+  background-size: 50px 50px;
 }
 
 .scrolling-wrapper-video::-webkit-scrollbar {
@@ -434,6 +438,8 @@ img.card:hover {
   width: 65px;
   border-radius: 5px;
   cursor: pointer;
+  /* background:url(../src/loading.gif) center center no-repeat;
+  background-size: 15px 15px; */
 }
 
 .actor-role {
@@ -464,6 +470,7 @@ img.card:hover {
   cursor: pointer;
   font-size: 22px;
   padding: 5px;
+  color: #1B1B1B;
 }
 
 .genres li:hover {
@@ -476,8 +483,9 @@ img.card:hover {
 }
 
 .navbar{
-  background-color: #0F9B8E;
-  padding: 25px;
+  background-color: rgb(34, 51, 67);
+  padding: 27px;
+  box-shadow: 0 4px 6px 0px rgba(0,0,0,.6);
 }
 
 .navbar .navbuttons{
@@ -497,7 +505,7 @@ a {
   color: white;
   border: 3px solid #03719C;
   border-radius: 8px;
-  padding: 13px;
+  padding: 10px;
   margin: 5px;
   background-color: #03719C;
 }
@@ -510,7 +518,7 @@ a {
   color: white;
   border: 3px solid #03719C;
   border-radius: 8px;
-  padding: 13px;
+  padding: 10px;
 }
 
 .navbuttons .signup:hover {
@@ -532,15 +540,17 @@ a {
   color: white;
   border: 3px solid #03719C;
   border-radius: 8px;
-  padding: 11px;
-  background-color: #0F9B8E;
+  padding: 7px;
+  background-color: #03719C;
   cursor: pointer;
   font-size: 19px;
-  margin-top: -16px;
+  margin-top: -13px;
 }
 
 .navbuttons .logout:hover {
   background-color: #03719C;
+  border: 3px solid #03719C;
+  /* color: #0F9B8E; */
 }
 
 .navbar .navTitle {
@@ -548,6 +558,10 @@ a {
   margin-top: -10px;
   color: white;
   float: left;
+}
+
+.navTitle span {
+  color: #0F9B8E;
 }
 
 .Login {
@@ -622,4 +636,9 @@ form {
 #signupPopup {
   width: 50%;
   margin-top: 5%;
+}
+
+.noVideos {
+  margin-top: 40px;
+  margin-left: 300px;
 }

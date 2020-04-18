@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../not.jpg';
 import axios from 'axios';
+import loadingGif from '../loadingGif.gif'
 
 const apiKey = '523e9d0683b307c83c56fc95d6c14367';
 
@@ -9,7 +10,8 @@ function Popup({selected, closePopup, changeSelected}) {
   const [state, setState] = useState({
     similar: [],
     videos: [],
-    cast: []
+    cast: [],
+    videosLoading: true
   });
 
   async function similarMovies(selected,similar) {
@@ -33,7 +35,7 @@ function Popup({selected, closePopup, changeSelected}) {
     const res = await axios(`https://api.themoviedb.org/3/movie/${selected.id}/videos?api_key=${apiKey}&language=en-US&page=1`)
     const data = await res.data.results;
     setState(prevState => {
-      return {...prevState, videos: data}
+      return {...prevState, videos: data, videosLoading: false}
     })
   }
 
@@ -72,12 +74,30 @@ function Popup({selected, closePopup, changeSelected}) {
     return rhours + "h " + rminutes + "m";
   }
   const actors = state.cast;
+  // var actorImage = ''
+  // actors.map((actor,i) => {
+  //   var actorSrc = actor.profile_path
+  //   console.log(actorSrc)
+  //   if(actorSrc === null) {
+  //     actorImage = logo
+  //   } else {
+  //     actorImage = `https://image.tmdb.org/t/p/w200/${actorSrc}`
+  //   }
+  // })
   // var newLine = '';
   // for(let i = 0; i < actors.length; i++) {
   //   if(actors[i].name.length > 18) {
   //     newLine = '\n'
   //   }
   // }
+
+  var noVideos;
+  var videos = state.videos;
+  if(state.videos.length === 0) {
+    noVideos = <h5 className="noVideos">({selected.original_title} has no videos)</h5>
+  }
+
+  var videos = state.videos.slice(0,5)
   var body = document.getElementsByTagName('body')[0];
   body.classList.add("noscroll")
   return (
@@ -106,17 +126,18 @@ function Popup({selected, closePopup, changeSelected}) {
           </div>
           <h3 className="videos">{selected.original_title} Videos:</h3>
           <div className="scrolling-wrapper-video">
-            {state.videos.map((video,i)=> (
-                <iframe key={i} className="card-video" width="320" height="215"
-                allowFullScreen="allowfullscreen"
-                mozallowfullscreen="mozallowfullscreen" 
-                msallowfullscreen="msallowfullscreen" 
-                oallowfullscreen="oallowfullscreen" 
-                webkitallowfullscreen="webkitallowfullscreen"
-                title="Movie Video"
-                frameBorder="0"
-                src={"https://www.youtube.com/embed/"+video.key}>
-                </iframe>
+            {noVideos}
+            {videos.map((video,i)=> (
+              <iframe key={i} className="card-video" width="320" height="215"
+              allowFullScreen="allowfullscreen"
+              mozallowfullscreen="mozallowfullscreen" 
+              msallowfullscreen="msallowfullscreen" 
+              oallowfullscreen="oallowfullscreen" 
+              webkitallowfullscreen="webkitallowfullscreen"
+              title="Movie Video"
+              frameBorder="0"
+              src={"https://www.youtube.com/embed/"+video.key}>
+              </iframe>
             ))}
 
           </div>
