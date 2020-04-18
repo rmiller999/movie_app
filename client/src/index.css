@@ -32,6 +32,10 @@ main {
   margin: 50px;
 } */
 
+.App {
+  margin-bottom: 35px;
+}
+
 section {
   padding: 15px;
   padding-top: 30px;
@@ -246,6 +250,7 @@ span.movie-info {
   display: inline-block;
   width: 100%;
   padding: 17px;
+  margin-top: 20px;
 }
 
 #pageBtn {
