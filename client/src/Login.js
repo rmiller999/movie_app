@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import Main from './components/Main';
+import NavBar from './components/NavBar';
 
-function Login({closePopup, onLoginClick}) {
+
+function Login({liftToken, onLoginClick, user,changeTitle}) {
   let history = useHistory();
   const [state, setState] = useState({
 
@@ -41,9 +44,10 @@ function Login({closePopup, onLoginClick}) {
         })
       } else {
         localStorage.setItem('mernToken', res.data.token)
+        // window.location.reload(false)
+        liftToken(res.data)
         history.push('/');
-        window.location.reload(false)
-        state.liftToken(res.data)
+        changeTitle()
       }
     }).catch(err => {
       setState(prevState => {
@@ -53,10 +57,16 @@ function Login({closePopup, onLoginClick}) {
   }
 
   async function closeLogin() {
-    history.goBack()
+    history.push('/')
   }
+  // // var title = document.getElementsByTagName('title');
+  // // title.innerHtml = state.user.name+"'s Movies.DB"
+  // document.title = state.user.name+"'s Movies.DB";
 
     return (
+      <>
+      {/* <NavBar user={user} /> */}
+      <Main />
       <section className="popup">
         <div id="loginPopup" className="content">
           <div className="Login">
@@ -83,6 +93,7 @@ function Login({closePopup, onLoginClick}) {
           <button  className="close" onClick={closeLogin}>back</button>
         </div>
       </section>
+    </>
     );
   
 }

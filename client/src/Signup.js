@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
-
+import Main from './components/Main';
+import NavBar from './components/NavBar';
 
 function Signup({closePopup, liftToken}) {
   let history = useHistory();
@@ -45,10 +46,13 @@ function Signup({closePopup, liftToken}) {
   }
 
   async function closeSignup() {
-    history.goBack()
+    history.push('/')
   }
 
     return (
+      <>
+      {/* <NavBar /> */}
+      <Main />
       <section className="popup">
         <div id="signupPopup" className="content">
           <div className="Signup">
@@ -82,6 +86,7 @@ function Signup({closePopup, liftToken}) {
           <button className="close" onClick={closeSignup}>back</button>
         </div>
       </section>
+    </>
     );
   
 }

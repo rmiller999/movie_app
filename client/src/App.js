@@ -92,47 +92,99 @@ function App() {
   var mainContent = (
     <Route exact path='/' render={() => (
       <>
-        <NavBar onLoginClick={onLoginClick} user={state.user} liftToken={liftToken} closePopup={closePopup} logout={logout} />
+        {/* <NavBar onLoginClick={onLoginClick} user={state.user} liftToken={liftToken} closePopup={closePopup} logout={logout} /> */}
         <Main liftToken={liftToken} user={state.user} />
       </>
     )} />
   )
+  
+  const userUpdate = () => {
+    setState(prevState => {
+      return {...prevState, user: user}
+    });
+    var user = state.user
+    var contents
+    var title = document.getElementsByTagName('title');
+    if (user) {
+      console.log(user.name)
+      document.title = user.name+" Movies.DB";  
+
+      contents = (
+        <>
+        <>
+          {/* <div className="navbuttons">
+            <p className="userName">Hello, {user.name}</p>
+            <button className="logout" onClick={logout}>Logout</button>
+            
+          </div> */}
+        </>
+        {mainContent}
+        </>
+      );
+    } else {
+      // document.title = "My Movies.DB";
+      contents = (
+        <>
+          {mainContent}
+        </>
+      )
+    }
+    setState(prevState => {
+      return {...prevState, user: user}
+    });
+  }
+  // var user = state.user
+  // var contents
+  // if (user) {
+  //   contents = (
+  //     <>
+  //     <>
+  //       {/* <div className="navbuttons">
+  //         <p className="userName">Hello, {user.name}</p>
+  //         <button className="logout" onClick={logout}>Logout</button>
+          
+  //       </div> */}
+  //     </>
+  //     {mainContent}
+  //     </>
+  //   );
+  // } else {
+  //   contents = (
+  //     <>
+  //       {mainContent}
+  //     </>
+  //   )
+  // }
+  const user = state.user;
+  // console.log(state.user)
+  function changeTitle() {
+    // console.log(user)
+
+    if(user) {
+      console.log('asdfasf')
+      document.title = user.name+" Movies.DB";  
+
+    } else {
+      document.title = "My Movies.DB";  
+
+    }
+  }
+
   useEffect(() => {
     checkForLocalToken()
+    userUpdate()
+    changeTitle()
   },[] )
-
-
-  var user = state.user
-  var contents
-  if (user) {
-    contents = (
-      <>
-      <>
-        {/* <div className="navbuttons">
-          <p className="userName">Hello, {user.name}</p>
-          <button className="logout" onClick={logout}>Logout</button>
-
-        </div> */}
-      </>
-      {mainContent}
-      </>
-    );
-  } else {
-    contents = (
-      <>
-        {mainContent}
-      </>
-    )
-  }
   return (
     <Router>
+      <NavBar onLoginClick={onLoginClick} user={state.user} liftToken={liftToken} closePopup={closePopup} logout={logout} />
       <Route exact path="/login" render={() => (
-        <Login liftToken={liftToken} closePopup={closePopup} onLoginClick={onLoginClick}/>
+        <Login user={state.user} liftToken={liftToken} closePopup={closePopup} onLoginClick={onLoginClick}/>
         )} />
       <Route exact path="/signup" render={() => (
-        <Signup liftToken={liftToken} closePopup={closePopup}/>
+        <Signup user={state.user} liftToken={liftToken} closePopup={closePopup}/>
         )} />
-        {contents}
+        {mainContent}
     </Router>
   );
 }

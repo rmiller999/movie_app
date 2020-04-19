@@ -68,11 +68,11 @@ section {
 }
 
 .searchbox:focus {
-  box-shadow: 0px 0px 8px 3px #0F9B8E;
+  box-shadow: 0px 0px 5px 3px #0F9B8E;
 }
 
 .searchbox:hover {
-  box-shadow: 0px 0px 8px 3px #0F9B8E;
+  box-shadow: 0px 0px 5px 3px #0F9B8E;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -485,7 +485,7 @@ img.card:hover {
 .navbar{
   background-color: rgb(34, 51, 67);
   padding: 27px;
-  box-shadow: 0 4px 6px 0px rgba(0,0,0,.6);
+  box-shadow: 0 4px 6px 0px rgba(0,0,0,.4);
 }
 
 .navbar .navbuttons{
@@ -599,11 +599,11 @@ form {
 }
 
 .emailInput:hover, .passwordInput:hover, .nameInput:hover {
-  box-shadow: 0px 0px 8px 3px #0F9B8E;
+  box-shadow: 0px 0px 5px 3px #0F9B8E;
 }
 
 .emailInput:focus, .passwordInput:focus, .nameInput:focus {
-  box-shadow: 0px 0px 8px 3px #0F9B8E;
+  box-shadow: 0px 0px 5px 3px #0F9B8E;
 }
 
 .submitForm {

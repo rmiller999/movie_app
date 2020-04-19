@@ -5,10 +5,14 @@ import {
 } from 'react-router-dom';
 
 function NavBar({user, liftToken, closePopup, logout}) {
+
   // var user = user
   var contents
   if (user) {
+    // console.log(user.name)
     
+    var title = document.getElementsByTagName('title');
+    title.innerHtml = user.name
     contents = (
       <>
         <p className="navTitle"><span>{user.name}'s</span> Movies.DB</p>
@@ -19,6 +23,8 @@ function NavBar({user, liftToken, closePopup, logout}) {
       </>
     );
   } else {
+    var title = document.getElementsByTagName('title');
+    title.innerHtml = "My Movies.DB"
     contents = (
       <>
       <p className="navTitle"><span>My </span>Movies.DB</p>
