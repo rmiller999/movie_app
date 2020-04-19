@@ -15,7 +15,7 @@ function NavBar({user, liftToken, closePopup, logout}) {
     title.innerHtml = user.name
     contents = (
       <>
-        <p className="navTitle"><span>{user.name}'s</span> Movies.DB</p>
+        <p className="navTitle"><span>{user.name}'s</span> Movie.DB</p>
         <div className="navbuttons">
             <button className="logout" onClick={logout}>Logout</button>
             <p className="userName">Welcome, ({user.name})</p>
@@ -27,7 +27,7 @@ function NavBar({user, liftToken, closePopup, logout}) {
     title.innerHtml = "My Movies.DB"
     contents = (
       <>
-      <p className="navTitle"><span>My </span>Movies.DB</p>
+      <p className="navTitle"><span>My </span>Movie.DB</p>
         <div className="navbuttons">
           <Link className="login" to='/login'  >Login</Link>
           <Link className="signup" to='/signup'  >Sign Up</Link>

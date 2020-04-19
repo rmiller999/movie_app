@@ -5,6 +5,7 @@ const expressJWT = require('express-jwt');
 const helmet = require('helmet');
 const RateLimit = require('express-rate-limit');
 const User = require('./models/user');
+const Rating = require('./models/rating');
 const path = require('path');
 
 
@@ -54,6 +55,25 @@ app.post('/users', (req,res) => {
     password: req.body.password
   }, function(err, user) {
     res.json(user)
+  })
+})
+
+app.post("/users/:id", (req,res) => {
+  User.findById(req.params.id, function(err, user) {
+      user.save( function(err) {
+      user.push({rating})
+          res.json(user)
+      })
+  })
+})
+
+app.post('/rating', (req,res) => {
+  Rating.create({
+    rating: req.body.rating,
+    selectedRate: req.body.selectedRate,
+    id: req.body.id
+  }, function(err, rating) {
+    res.json(rating)
   })
 })
 

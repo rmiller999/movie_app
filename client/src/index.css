@@ -505,7 +505,7 @@ a {
   color: white;
   border: 3px solid #03719C;
   border-radius: 8px;
-  padding: 10px;
+  padding: 8px;
   margin: 5px;
   background-color: #03719C;
 }
@@ -518,7 +518,7 @@ a {
   color: white;
   border: 3px solid #03719C;
   border-radius: 8px;
-  padding: 10px;
+  padding: 8px;
 }
 
 .navbuttons .signup:hover {
@@ -543,8 +543,8 @@ a {
   padding: 7px;
   background-color: #03719C;
   cursor: pointer;
-  font-size: 19px;
-  margin-top: -13px;
+  font-size: 16px;
+  margin-top: -10px;
 }
 
 .navbuttons .logout:hover {
@@ -561,6 +561,7 @@ a {
 }
 
 .navTitle span {
+  font-size: 20px;
   color: #0F9B8E;
 }
 
@@ -641,4 +642,8 @@ form {
 .noVideos {
   margin-top: 40px;
   margin-left: 300px;
+}
+
+.icon:focus{
+  outline: 0;
 }

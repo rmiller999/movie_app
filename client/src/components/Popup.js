@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import logo from '../not.jpg';
 import axios from 'axios';
 import loadingGif from '../loadingGif.gif'
-
+import Rater from 'react-rater'
+import 'react-rater/lib/react-rater.css'
+import { Rating } from 'semantic-ui-react'
 const apiKey = '523e9d0683b307c83c56fc95d6c14367';
 
 
@@ -11,7 +13,9 @@ function Popup({selected, closePopup, changeSelected}) {
     similar: [],
     videos: [],
     cast: [],
-    videosLoading: true
+    videosLoading: true,
+    value: 0,
+    rating: 0
   });
 
   async function similarMovies(selected,similar) {
@@ -38,7 +42,6 @@ function Popup({selected, closePopup, changeSelected}) {
       return {...prevState, videos: data, videosLoading: false}
     })
   }
-
   
   useEffect(() => {
     similarMovies(selected);
@@ -46,6 +49,18 @@ function Popup({selected, closePopup, changeSelected}) {
     getCast(selected);
   }, [selected])
   
+  async function handleRate(e, { rating}){
+    setState(prevState => {
+      return {...prevState, rating: rating}
+    })
+    e.preventDefault()
+    axios.post('/rating', {
+      rating: rating,
+      selectedRate: selected.original_title,
+      id: selected.id
+    })
+
+  }
   // const changeSelected = movieId => {
   //   axios(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`).then(({data}) => {
   //     let result = data;
@@ -111,6 +126,9 @@ function Popup({selected, closePopup, changeSelected}) {
           ))}
         </p>
         <span className="movie-info">{timeConvert(runtime)}</span>
+        <section className="PlainRater">
+          <Rating className="movieRating" onRate={handleRate} maxRating={5} defaultRating={state.rating} icon='star' size='large' />
+        </section> 
         <div className="plot">
           <img className="poster" src={image} alt="Movie Poster" />
           <p className="summary">{selected.overview}</p>
