@@ -45,7 +45,41 @@ app.get('/users', (req,res) => {
     if (err) res.json(err)
     res.json(users)
   })
-  
+})
+
+app.get("/users/:uid/ratings", (req, res) => {
+  User.findById(req.params.uid).populate('ratings').exec( (err, user) => {
+    res.json(user.ratings);
+  })
+})
+
+app.post("/users/:uid/ratings", (req,res) => {
+  Rating.create({
+    rating: req.body.rating,
+    selectedRate: req.body.selectedRate,
+    id: req.body.id
+  }, (err, rating) => {
+  User.findById(req.params.uid).populate('ratings').exec( (err, user) => {
+    // console.log("rating",rating._id)
+    user.ratings.push(rating._id);
+    user.save((err, user) => {
+      res.json(user);
+    });
+    })
+  })
+});
+
+app.delete("/users/:uid/ratings/:rid", (req,res) => {
+  User.findById(req.params.uid, (err, user) => {
+    user.ratings.pull(req.params.rid)
+    user.save( err => {
+      if (err) res.json(err)
+      Rating.deleteOne({_id: req.params.rid}, err => {
+      if (err) res.json(err)
+      res.json(1);
+        })
+      })
+    })
 })
 
 app.post('/users', (req,res) => {
@@ -58,16 +92,16 @@ app.post('/users', (req,res) => {
   })
 })
 
-app.post("/users/:id", (req,res) => {
-  User.findById(req.params.id, function(err, user) {
-      user.save( function(err) {
-      user.push({rating})
-          res.json(user)
-      })
-  })
-})
+// app.post("/users/:id", (req,res) => {
+//   User.findById(req.params.id, function(err, user) {
+//       user.save( function(err) {
+//       user.push({rating})
+//           res.json(user)
+//       })
+//   })
+// })
 
-app.post('/rating', (req,res) => {
+app.post('/ratings', (req,res) => {
   Rating.create({
     rating: req.body.rating,
     selectedRate: req.body.selectedRate,
@@ -76,6 +110,34 @@ app.post('/rating', (req,res) => {
     res.json(rating)
   })
 })
+
+app.get('/ratings', (req,res) => {
+  Rating.find({}, function(err,ratings){
+      if (err) {
+      res.json(err)
+      }
+      res.json(ratings)
+  })
+})
+
+app.put("/ratings/:id", (req,res) => {
+  Rating.findByIdAndUpdate(req.params.id, {
+      rating: req.body.rating
+  }, {
+      new: true
+  }, (err, ratings) =>  {
+      res.json(ratings);
+  });
+});
+
+app.get('/ratings/:id', (req,res) => {
+  Rating.findById(req.params.id, (err, rating) => {
+  if (err) {
+    res.json(err)
+  }
+  res.json(rating)
+  })
+});
 
 app.get('/*', (req,res) =>{
   res.sendFile(path.join(__dirname+'/client/build/index.html'));

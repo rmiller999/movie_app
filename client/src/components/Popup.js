@@ -8,14 +8,16 @@ import { Rating } from 'semantic-ui-react'
 const apiKey = '523e9d0683b307c83c56fc95d6c14367';
 
 
-function Popup({selected, closePopup, changeSelected}) {
+function Popup({selected, closePopup, changeSelected, user}) {
+  console.log("POP",user)
   const [state, setState] = useState({
     similar: [],
     videos: [],
     cast: [],
     videosLoading: true,
     value: 0,
-    rating: 0
+    rating: 0,
+    rated: []
   });
 
   async function similarMovies(selected,similar) {
@@ -47,14 +49,20 @@ function Popup({selected, closePopup, changeSelected}) {
     similarMovies(selected);
     movieVideos(selected);
     getCast(selected);
+    axios.get(`users/${user._id}/ratings`).then((res) => {
+      console.log("Useeffect",res.data[0].rating)
+      setState(prevState => {
+        return {...prevState, rating: res.data[0].rating}
+      })
+    })
   }, [selected])
   
-  async function handleRate(e, { rating}){
+  async function handleRate(e, {rating}){
     setState(prevState => {
       return {...prevState, rating: rating}
     })
     e.preventDefault()
-    axios.post('/rating', {
+    axios.post(`/users/${user._id}/ratings`, {
       rating: rating,
       selectedRate: selected.original_title,
       id: selected.id
@@ -127,7 +135,7 @@ function Popup({selected, closePopup, changeSelected}) {
         </p>
         <span className="movie-info">{timeConvert(runtime)}</span>
         <section className="PlainRater">
-          <Rating className="movieRating" onRate={handleRate} maxRating={5} defaultRating={state.rating} icon='star' size='large' />
+          <Rating className="movieRating" onRate={handleRate} maxRating={5} rating={state.rating} icon='star' size='large' />
         </section> 
         <div className="plot">
           <img className="poster" src={image} alt="Movie Poster" />

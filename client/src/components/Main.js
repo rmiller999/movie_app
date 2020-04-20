@@ -12,7 +12,8 @@ import axios from 'axios';
 const apiKey = '523e9d0683b307c83c56fc95d6c14367';
 
 
-function Main() {
+function Main({user,liftToken}) {
+  // console.log("Main",user)
   const [state, setState] = useState({
     s: '',
     results: [],
@@ -205,7 +206,6 @@ function Main() {
     handlePageChange(state.page)
   }, [])
 
-
   return (
     <div className="App">
       {/* <header>
@@ -218,7 +218,7 @@ function Main() {
           <SideBar genrePageChange={genrePageChange} genre={state.genre} page={state.page} pages={state.pages} genres={state.genres} handleGenreChange={handleGenreChange} />
           <Results s={state.s}  results={state.results} openPopup={openPopup}  />
           <PageButtons page={state.page} pages={state.pages} handlePageChange={handlePageChange}/>
-          {(typeof state.selected.original_title != "undefined") ? <Popup selected={state.selected} closePopup={closePopup} changeSelected={changeSelected} /> : false}
+          {(typeof state.selected.original_title != "undefined") ? <Popup liftToken={liftToken} user={user} selected={state.selected} closePopup={closePopup} changeSelected={changeSelected} /> : false}
         </main>
 
       </div>

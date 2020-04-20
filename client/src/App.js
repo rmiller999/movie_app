@@ -88,7 +88,7 @@ function App() {
     var body = document.getElementsByTagName('body')[0];
     body.classList.remove("noscroll")
   }
-  
+  console.log("app",state.user)
   var mainContent = (
     <Route exact path='/' render={() => (
       <>
@@ -156,7 +156,6 @@ function App() {
   //   )
   // }
   const user = state.user;
-  // console.log(state.user)
   function changeTitle() {
     // console.log(user)
 
