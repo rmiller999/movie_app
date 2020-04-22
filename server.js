@@ -57,10 +57,11 @@ app.post("/users/:uid/ratings", (req,res) => {
   Rating.create({
     rating: req.body.rating,
     selectedRate: req.body.selectedRate,
+    rated: req.body.rated,
     id: req.body.id
   }, (err, rating) => {
   User.findById(req.params.uid).populate('ratings').exec( (err, user) => {
-    // console.log("rating",rating._id)
+    console.log("rating",rating)
     user.ratings.push(rating._id);
     user.save((err, user) => {
       res.json(user);
@@ -105,6 +106,7 @@ app.post('/ratings', (req,res) => {
   Rating.create({
     rating: req.body.rating,
     selectedRate: req.body.selectedRate,
+    rated: req.body.rated,
     id: req.body.id
   }, function(err, rating) {
     res.json(rating)

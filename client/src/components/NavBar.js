@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  BrowserRouter as Router,
   Link
 } from 'react-router-dom';
 
@@ -9,13 +8,9 @@ function NavBar({user, liftToken, closePopup, logout}) {
   // var user = user
   var contents
   if (user) {
-    // console.log(user.name)
-    
-    var title = document.getElementsByTagName('title');
-    title.innerHtml = user.name
     contents = (
       <>
-        <p className="navTitle"><span>{user.name}'s</span> Movie.DB</p>
+        <p className="navTitle"><span>{user.name}'s</span> Movie.<span>DB</span></p>
         <div className="navbuttons">
             <button className="logout" onClick={logout}>Logout</button>
             <p className="userName">Welcome, ({user.name})</p>
@@ -23,11 +18,9 @@ function NavBar({user, liftToken, closePopup, logout}) {
       </>
     );
   } else {
-    var title = document.getElementsByTagName('title');
-    title.innerHtml = "My Movies.DB"
     contents = (
       <>
-      <p className="navTitle"><span>My </span>Movie.DB</p>
+      <p className="navTitle"><span>My </span>Movie.<span>DB</span></p>
         <div className="navbuttons">
           <Link className="login" to='/login'  >Login</Link>
           <Link className="signup" to='/signup'  >Sign Up</Link>

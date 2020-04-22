@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import Main from './components/Main';
-import NavBar from './components/NavBar';
 
 function Signup({closePopup, liftToken}) {
   let history = useHistory();

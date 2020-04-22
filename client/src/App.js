@@ -88,7 +88,6 @@ function App() {
     var body = document.getElementsByTagName('body')[0];
     body.classList.remove("noscroll")
   }
-  console.log("app",state.user)
   var mainContent = (
     <Route exact path='/' render={() => (
       <>
@@ -104,7 +103,6 @@ function App() {
     });
     var user = state.user
     var contents
-    var title = document.getElementsByTagName('title');
     if (user) {
       console.log(user.name)
       document.title = user.name+" Movies.DB";  

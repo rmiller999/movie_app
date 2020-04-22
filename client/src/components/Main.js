@@ -216,7 +216,7 @@ function Main({user,liftToken}) {
           <Search handleInput={handleInput} search={search}/>
           <Category category={state.category} handleCategoryChange={handleCategoryChange}/>
           <SideBar genrePageChange={genrePageChange} genre={state.genre} page={state.page} pages={state.pages} genres={state.genres} handleGenreChange={handleGenreChange} />
-          <Results s={state.s}  results={state.results} openPopup={openPopup}  />
+          <Results s={state.s} results={state.results} openPopup={openPopup} user={user} />
           <PageButtons page={state.page} pages={state.pages} handlePageChange={handlePageChange}/>
           {(typeof state.selected.original_title != "undefined") ? <Popup liftToken={liftToken} user={user} selected={state.selected} closePopup={closePopup} changeSelected={changeSelected} /> : false}
         </main>

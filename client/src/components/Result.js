@@ -3,7 +3,9 @@ import logo from '../not.jpg';
 // import Results from './Results';
 
 
-function Result({result, openPopup}) {
+function Result({result, openPopup,user}) {
+  // console.log("result",user)
+
   const src = result.poster_path;
   // const release_date = result.release_date.slice(0,4);
   let image = ''

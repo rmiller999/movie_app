@@ -173,6 +173,8 @@ section {
 .popup .content h2 {
   font-size: 28px;
   font-weight: 600;
+  margin-bottom: 5px;
+
 }
 
 .popup .content h2 span {
@@ -180,8 +182,9 @@ section {
   font-size: 20px;
 }
 
-.popup .content .rating {
+.popup .content .apiRating {
   margin-bottom: 10px;
+  font-size: 16px;
 }
 
 .popup .content p .genre {
@@ -199,7 +202,7 @@ section {
 
 span.movie-info {
   display: inline-block;
-  padding-top: 5px;
+  /* padding-top: 5px; */
 }
 
 .popup .content .plot {
@@ -415,7 +418,7 @@ img.card:hover {
 
 .info {
   display: inline-block;
-  padding: 8px;
+  padding-top: 8px;
   /* width: 120px; */
 }
 
@@ -431,6 +434,7 @@ img.card:hover {
   /* padding: 8px; */
   font-size: 12px;
   font-weight: 500;
+  margin-bottom: 2px;
 }
 
 .actorImg {
@@ -646,4 +650,23 @@ form {
 
 .icon:focus{
   outline: 0;
+}
+
+.movieRating {
+  /* border: 1px solid #fff; */
+  position: absolute;
+  margin-left: 500px;
+  margin-top: -50px;
+  color: #fff;
+}
+
+.icon {
+  color: rgba(255, 255, 255, 0.76) !important;
+  font-size: 20px !important;
+}
+
+.movieRating p {
+  margin-bottom: 3px;
+  font-size: 18px;
+  text-align: center;
 }

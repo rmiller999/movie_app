@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../not.jpg';
 import axios from 'axios';
-import loadingGif from '../loadingGif.gif'
-import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
 import { Rating } from 'semantic-ui-react'
 const apiKey = '523e9d0683b307c83c56fc95d6c14367';
 
 
 function Popup({selected, closePopup, changeSelected, user}) {
-  console.log("POP",user)
   const [state, setState] = useState({
     similar: [],
     videos: [],
@@ -17,7 +14,7 @@ function Popup({selected, closePopup, changeSelected, user}) {
     videosLoading: true,
     value: 0,
     rating: 0,
-    rated: []
+    rated: false
   });
 
   async function similarMovies(selected,similar) {
@@ -49,22 +46,38 @@ function Popup({selected, closePopup, changeSelected, user}) {
     similarMovies(selected);
     movieVideos(selected);
     getCast(selected);
-    axios.get(`users/${user._id}/ratings`).then((res) => {
-      console.log("Useeffect",res.data[0].rating)
-      setState(prevState => {
-        return {...prevState, rating: res.data[0].rating}
+    if (user) {
+      axios.get(`users/${user._id}/ratings`).then((res) => {
+        var ratings = res.data;
+        ratings.map((rating,i) => {
+          if(rating.id === selected.id) {
+            console.log("rated movie:",rating.rating)
+            setState(prevState => {
+              return {...prevState, rating: rating.rating, rated: true}
+            })          
+          } else {
+            // setState(prevState => {
+            //   return {...prevState, rating: 0}
+            // })
+          }
+        })
+        // setState(prevState => {
+        //   return {...prevState, rating: res.data[0].rating}
+        // })
       })
-    })
+
+    }
   }, [selected])
   
   async function handleRate(e, {rating}){
     setState(prevState => {
-      return {...prevState, rating: rating}
+      return {...prevState, rating: rating,rated: true}
     })
     e.preventDefault()
     axios.post(`/users/${user._id}/ratings`, {
       rating: rating,
       selectedRate: selected.original_title,
+      rated: true,
       id: selected.id
     })
 
@@ -120,23 +133,27 @@ function Popup({selected, closePopup, changeSelected, user}) {
     noVideos = <h5 className="noVideos">({selected.original_title} has no videos)</h5>
   }
 
-  var videos = state.videos.slice(0,5)
+  videos = state.videos.slice(0,5)
   var body = document.getElementsByTagName('body')[0];
   body.classList.add("noscroll")
   return (
     <section className="popup">
       <div className="content">
         <h2>{selected.original_title}<span> ({release_date})</span></h2>
-        <p className="rating">Rating: {selected.vote_average}/10</p>
+        <p className="apiRating">Rating: {selected.vote_average}/10</p>
         <p>
           {genres.map((genre,i) => (
             <span className="genre movie-info" key={i}>{genre.name} </span>
           ))}
         </p>
         <span className="movie-info">{timeConvert(runtime)}</span>
-        <section className="PlainRater">
-          <Rating className="movieRating" onRate={handleRate} maxRating={5} rating={state.rating} icon='star' size='large' />
-        </section> 
+        {/* <section className="PlainRater"> */}
+        <div className="movieRating">
+          <p>Your Rating</p>
+          <Rating onRate={handleRate} maxRating={5} rating={state.rating} icon='star' size='large' />
+
+        </div>
+        {/* </section>  */}
         <div className="plot">
           <img className="poster" src={image} alt="Movie Poster" />
           <p className="summary">{selected.overview}</p>

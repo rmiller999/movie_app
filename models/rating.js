@@ -4,12 +4,13 @@ const ratingSchema = new mongoose.Schema({
   rating: Number,
   selectedRate: String,
   id: Number,
-    author: {
-      id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-      },
-      username: String
+  rated: false,
+  author: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+    username: String
   }
 });
 
