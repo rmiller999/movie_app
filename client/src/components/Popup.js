@@ -3,6 +3,9 @@ import logo from '../not.jpg';
 import axios from 'axios';
 import 'react-rater/lib/react-rater.css'
 import { Rating } from 'semantic-ui-react'
+import {
+  Link
+} from 'react-router-dom';
 const apiKey = '523e9d0683b307c83c56fc95d6c14367';
 
 
@@ -41,7 +44,7 @@ function Popup({selected, closePopup, changeSelected, user}) {
       return {...prevState, videos: data, videosLoading: false}
     })
   }
-  
+  var noUser;
   useEffect(() => {
     similarMovies(selected);
     movieVideos(selected);
@@ -65,7 +68,6 @@ function Popup({selected, closePopup, changeSelected, user}) {
         //   return {...prevState, rating: res.data[0].rating}
         // })
       })
-
     }
   }, [selected])
   
@@ -126,6 +128,21 @@ function Popup({selected, closePopup, changeSelected, user}) {
   //     newLine = '\n'
   //   }
   // }
+  if(!user) {
+    noUser = (
+      <>
+        <Link className="popupLogin" to='/login'  >Login to rate</Link>
+        <Rating onRate={handleRate} maxRating={5} rating={state.rating} icon='star' size='large' disabled/>
+      </>
+    )
+  } else {
+    noUser = (
+      <>
+        <p>Your Rating</p>
+        <Rating onRate={handleRate} maxRating={5} rating={state.rating} icon='star' size='large' />
+      </>
+    )
+  }
 
   var noVideos;
   var videos = state.videos;
@@ -149,8 +166,9 @@ function Popup({selected, closePopup, changeSelected, user}) {
         <span className="movie-info">{timeConvert(runtime)}</span>
         {/* <section className="PlainRater"> */}
         <div className="movieRating">
-          <p>Your Rating</p>
-          <Rating onRate={handleRate} maxRating={5} rating={state.rating} icon='star' size='large' />
+          {noUser}
+          {/* <p>Your Rating</p>
+          <Rating onRate={handleRate} maxRating={5} rating={state.rating} icon='star' size='large' /> */}
 
         </div>
         {/* </section>  */}

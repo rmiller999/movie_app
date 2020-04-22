@@ -474,7 +474,7 @@ img.card:hover {
   cursor: pointer;
   font-size: 22px;
   padding: 5px;
-  color: #1B1B1B;
+  color: rgb(12, 12, 12);
 }
 
 .genres li:hover {
@@ -667,6 +667,14 @@ form {
 
 .movieRating p {
   margin-bottom: 3px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.movieRating .popupLogin {
+  position: absolute;
+  bottom: 30px;
+  left: 12px;
   font-size: 18px;
   text-align: center;
 }
