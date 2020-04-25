@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import Main from './components/Main';
-
+import {
+  Link
+} from 'react-router-dom';
 
 function Login({liftToken, onLoginClick, user,changeTitle}) {
   let history = useHistory();
@@ -85,8 +87,9 @@ function Login({liftToken, onLoginClick, user,changeTitle}) {
                       value={state.password}
                       name="password"
                       className="passwordInput"
-                      placeholder="Enter password..." /><br />
+                      placeholder="Enter password..." />
               <input className="submitForm" type="submit" value="Log in!" />
+              <Link className="noAcct" to='/signup'  >Don't have an account?</Link>
             </form>
           </div>
           <button  className="close" onClick={closeLogin}>back</button>

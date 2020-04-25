@@ -206,7 +206,8 @@ section {
 
 span.movie-info {
   display: inline-block;
-  /* padding-top: 5px; */
+  padding-left: 2px;
+  font-size: 16px;
 }
 
 .popup .content .plot {
@@ -478,7 +479,7 @@ img.card:hover {
   cursor: pointer;
   font-size: 22px;
   padding: 5px;
-  color: rgb(12, 12, 12);
+  /* color: rgb(12, 12, 12); */
 }
 
 .genres li:hover {
@@ -488,8 +489,8 @@ img.card:hover {
 
 .activeGenre {
   color: #0F9B8E;
+  transform: scale(1.17);
 }
-
 .navbar{
   background-color: rgb(34, 51, 67);
   padding: 27px;
@@ -618,7 +619,7 @@ form {
 .submitForm {
   display: inline-block;
   padding: 15px 30px;
-  margin-top: 10px;
+  margin-top: 50px;
   font-size: 18px;
   font-weight: 800;
 
@@ -681,4 +682,10 @@ form {
   left: 12px;
   font-size: 18px;
   text-align: center;
+}
+
+a.noAcct {
+  position: absolute;
+  padding-top: 10px;
+  left: 45%;
 }
