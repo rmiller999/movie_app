@@ -3,6 +3,7 @@ import logo from '../not.jpg';
 import axios from 'axios';
 import 'react-rater/lib/react-rater.css'
 import { Rating } from 'semantic-ui-react'
+// import Rating from 'react-rating';
 import {
   Link
 } from 'react-router-dom';
@@ -52,32 +53,42 @@ function Popup({selected, closePopup, changeSelected, user}) {
     if (user) {
       axios.get(`users/${user._id}/ratings`).then((res) => {
         var ratings = res.data;
+        var allRatings = []
         ratings.map((rating,i) => {
-          if(rating.id === selected.id) {
-            console.log("rated movie:",rating.rating)
+          allRatings.push(rating.id)
+          var ratingsId = ratings[i].id
+          if(ratingsId === selected.id) {
+            // console.log("rated movie:",rating.rating)
             setState(prevState => {
               return {...prevState, rating: rating.rating, rated: true}
             })          
-          } else {
-            // setState(prevState => {
-            //   return {...prevState, rating: 0}
-            // })
+          } else if(ratingsId !== selected.id) {
+          //   // console.log(selected.id)
+          //   // setState(prevState => {
+          //   //   return {...prevState, rating: rating.rating}
+          //   // })
+          //   // console.log(rating.id, selected.id)
           }
+          // console.log(allRatings.length)
         })
-        // setState(prevState => {
-        //   return {...prevState, rating: res.data[0].rating}
-        // })
+        if(!allRatings.includes(selected.id)) {
+          console.log("true")
+          setState(prevState => {
+            return {...prevState, rating: 0, rated: true}
+          })       
+        }
       })
     }
   }, [selected])
   
-  async function handleRate(e, {rating}){
+  async function handleRate(e, rating){
+    console.log(rating)
     setState(prevState => {
-      return {...prevState, rating: rating,rated: true}
+      return {...prevState, rating: rating.rating,rated: true}
     })
     e.preventDefault()
     axios.post(`/users/${user._id}/ratings`, {
-      rating: rating,
+      rating: rating.rating,
       selectedRate: selected.original_title,
       rated: true,
       id: selected.id
@@ -140,6 +151,7 @@ function Popup({selected, closePopup, changeSelected, user}) {
       <>
         <p>Your Rating</p>
         <Rating onRate={handleRate} maxRating={5} rating={state.rating} icon='star' size='large' />
+        {/* <Rating onChange={handleRate} initialRating={state.rating} emptySymbol="fa fa-star-o fa-2x" fullSymbol="fa fa-star fa-2x" fractions={2}/> */}
       </>
     )
   }
@@ -206,7 +218,9 @@ function Popup({selected, closePopup, changeSelected, user}) {
         <h3 className="similar-movies">Similar Moives:</h3>
         <div className="scrolling-wrapper">
           {state.similar.map((movie,i) => (
-            <img onClick={() => changeSelected(movie.id)} key={i} className="card" src={'https://image.tmdb.org/t/p/w200/'+movie.poster_path} alt={movie.original_title} />
+            <img onClick={() => changeSelected(movie.id)} key={i} className="card" 
+            src={'https://image.tmdb.org/t/p/w200/'+movie.poster_path}
+            alt={movie.original_title} />
           ))}
         </div>
         <button className="close" onClick={closePopup}>close</button>

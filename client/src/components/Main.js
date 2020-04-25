@@ -42,7 +42,8 @@ function Main({user,liftToken}) {
       { id: 10752, name: "War" },
       { id: 37, name: "Western" }
     ],
-    genre: 0
+    genre: 0,
+    rating: 0
     });
 
   // async function fetchData() {
@@ -153,12 +154,32 @@ function Main({user,liftToken}) {
       return {...prevState, results: data}
     })
   }
-  async function changeSelected(movieId) {
+  async function changeSelected(movieId,rating) {
     axios(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`).then(({data}) => {
       let result = data;
+      if (user) {
+        axios.get(`users/${user._id}/ratings`).then((res) => {
+          var ratings = res.data;
+          ratings.map((rating,i) => {
+            if(rating.id === result.id) {
+              console.log("from Main rated movie:",state.rating)
+              console.log("Selected movie:",state.selected.id)
+              setState(prevState => {
+                return {...prevState, rating: state.rating}
+              })          
+            } else if(rating.id !== result.id)  {
+              
+              setState(prevState => {
+                return {...prevState, rating: 0}
+              })
+            }
+          })
+        })
+      }
       setState(prevState => {
         return {...prevState, selected: result}
       })
+      
     })
   }
 
@@ -197,7 +218,7 @@ function Main({user,liftToken}) {
         const data = await res.data.results;
         // console.log(pagesList)
         setState(prevState => {
-          return {...prevState, results: data, pages: pagesList}
+          return {...prevState, results: data, pages: pagesList, rating: state.rating}
         })    
         
       }
