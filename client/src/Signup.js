@@ -55,7 +55,7 @@ function Signup({closePopup, liftToken}) {
       <section className="popup">
         <div id="signupPopup" className="content">
           <div className="Signup">
-            <h3>Create a new account:</h3>
+            <h3>Create a new account</h3>
             <form onSubmit={handleSubmit}>
               <label htmlFor="name">Name:</label>
               <input onChange={handleInputChange}
@@ -78,7 +78,7 @@ function Signup({closePopup, liftToken}) {
                       name="password"
                       className="passwordInput"
                       placeholder="Choose a password"/><br />
-              <input className="submitForm" type="submit" value="Sign up"/>
+              <input id="signupSubmit" className="submitForm" type="submit" value="Sign up"/>
               <p className='error'>{state.message}</p>
             </form>
           </div>

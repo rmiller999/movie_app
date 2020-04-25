@@ -602,8 +602,8 @@ form {
   border-radius: 8px;
 
   color: #FFF;
-  font-size: 18px;
-  font-weight: 300;
+  font-size: 15px;
+  font-weight: 500;
 
   transition: 0.4s ease-out;
 }
@@ -686,6 +686,10 @@ form {
 
 a.noAcct {
   position: absolute;
-  padding-top: 10px;
+  margin-top: 18px;
   left: 45%;
+}
+
+#signupSubmit {
+  margin-top: auto;
 }

@@ -71,7 +71,7 @@ function Login({liftToken, onLoginClick, user,changeTitle}) {
       <section className="popup">
         <div id="loginPopup" className="content">
           <div className="Login">
-            <h3>Log into your account:</h3>
+            <h3>Log into your account</h3>
             <form onSubmit={handleSubmit}>
               <label htmlFor="email">Email:</label>
               <input onChange={handleEmailChange}
