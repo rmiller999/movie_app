@@ -10,7 +10,7 @@ function NavBar({user, liftToken, closePopup, logout}) {
   if (user) {
     contents = (
       <>
-        <p className="navTitle"><span>{user.name}'s</span> Movie.<span>DB</span></p>
+        <p className="navTitle"><span>{user.name}'s</span> Movie<span className="titlePeriod">.</span><span>DB</span></p>
         <div className="navbuttons">
             <button className="logout" onClick={logout}>Logout</button>
             <p className="userName">Welcome, ({user.name})</p>
@@ -20,7 +20,7 @@ function NavBar({user, liftToken, closePopup, logout}) {
   } else {
     contents = (
       <>
-      <p className="navTitle"><span>My </span>Movie.<span>DB</span></p>
+      <p className="navTitle"><span>My </span>Movie<span className="titlePeriod">.</span><span>DB</span></p>
         <div className="navbuttons">
           <Link className="login" to='/login'  >Login</Link>
           <Link className="signup" to='/signup'  >Sign Up</Link>

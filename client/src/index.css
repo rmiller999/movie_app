@@ -563,8 +563,8 @@ a {
 }
 
 .navbar .navTitle {
-  font-size: 20px;
-  margin-top: -10px;
+  font-size: 22px;
+  margin-top: -13px;
   color: white;
   float: left;
 }
@@ -692,4 +692,9 @@ a.noAcct {
 
 #signupSubmit {
   margin-top: auto;
+}
+
+.titlePeriod {
+  font-size: 26px !important;
+  /* color: rgb(12,12,12) !important; */
 }
