@@ -97,80 +97,40 @@ function App() {
     )} />
   )
   
-  const userUpdate = () => {
-    setState(prevState => {
-      return {...prevState, user: user}
-    });
-    var user = state.user
-    var contents
-    if (user) {
-      console.log(user.name)
-      document.title = user.name+" Movies.DB";  
-
-      contents = (
-        <>
-        <>
-          {/* <div className="navbuttons">
-            <p className="userName">Hello, {user.name}</p>
-            <button className="logout" onClick={logout}>Logout</button>
+  // const userUpdate = () => {
+  //   setState(prevState => {
+  //     return {...prevState, user: user}
+  //   });
+  //   var user = state.user
+  //   // var contents
+  //   // if (user) {
+  //   //   contents = (
+  //   //     <>
+  //   //     <>
+  //   //       {/* <div className="navbuttons">
+  //   //         <p className="userName">Hello, {user.name}</p>
+  //   //         <button className="logout" onClick={logout}>Logout</button>
             
-          </div> */}
-        </>
-        {mainContent}
-        </>
-      );
-    } else {
-      // document.title = "My Movies.DB";
-      contents = (
-        <>
-          {mainContent}
-        </>
-      )
-    }
-    setState(prevState => {
-      return {...prevState, user: user}
-    });
-  }
-  // var user = state.user
-  // var contents
-  // if (user) {
-  //   contents = (
-  //     <>
-  //     <>
-  //       {/* <div className="navbuttons">
-  //         <p className="userName">Hello, {user.name}</p>
-  //         <button className="logout" onClick={logout}>Logout</button>
-          
-  //       </div> */}
-  //     </>
-  //     {mainContent}
-  //     </>
-  //   );
-  // } else {
-  //   contents = (
-  //     <>
-  //       {mainContent}
-  //     </>
-  //   )
+  //   //       </div> */}
+  //   //     </>
+  //   //     {mainContent}
+  //   //     </>
+  //   //   );
+  //   // } else {
+  //   //   // document.title = "My Movies.DB";
+  //   //   contents = (
+  //   //     <>
+  //   //       {mainContent}
+  //   //     </>
+  //   //   )
+  //   // }
+  //   setState(prevState => {
+  //     return {...prevState, user: user}
+  //   });
   // }
-  const user = state.user;
-  function changeTitle() {
-    // console.log(user)
-
-    if(user) {
-      console.log('asdfasf')
-      document.title = user.name+" Movies.DB";  
-
-    } else {
-      document.title = "My Movies.DB";  
-
-    }
-  }
 
   useEffect(() => {
     checkForLocalToken()
-    userUpdate()
-    changeTitle()
   },[] )
   return (
     <Router>

@@ -54,7 +54,7 @@ function Popup({selected, closePopup, changeSelected, user}) {
       axios.get(`users/${user._id}/ratings`).then((res) => {
         var ratings = res.data;
         var allRatings = []
-        ratings.map((rating,i) => {
+        ratings.forEach((rating,i) => {
           allRatings.push(rating.id)
           var ratingsId = ratings[i].id
           if(ratingsId === selected.id) {

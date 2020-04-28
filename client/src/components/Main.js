@@ -160,7 +160,7 @@ function Main({user,liftToken}) {
       if (user) {
         axios.get(`users/${user._id}/ratings`).then((res) => {
           var ratings = res.data;
-          ratings.map((rating,i) => {
+          ratings.forEach((rating,i) => {
             if(rating.id === result.id) {
               console.log("from Main rated movie:",state.rating)
               console.log("Selected movie:",state.selected.id)

@@ -499,7 +499,7 @@ img.card:hover {
 
 .navbar .navbuttons{
   float: right;
-  display: inline;
+  /* display: inline; */
 }
 
 .navbuttons {
@@ -537,7 +537,7 @@ a {
 
 .navbuttons .userName, .logout{
   float: right;
-  display: inline;
+  /* display: inline; */
 }
 
 .navbuttons .userName {

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import Main from './components/Main';
-import Popup from './components/Popup';
 import {
   Link
 } from 'react-router-dom';
@@ -61,13 +60,9 @@ function Login({liftToken, onLoginClick, user,changeTitle}) {
   async function closeLogin() {
     history.push('/')
   }
-  // // var title = document.getElementsByTagName('title');
-  // // title.innerHtml = state.user.name+"'s Movies.DB"
-  // document.title = state.user.name+"'s Movies.DB";
 
     return (
       <>
-      {/* <NavBar user={user} /> */}
       <Main />
       <section className="popup">
         <div id="loginPopup" className="content">
