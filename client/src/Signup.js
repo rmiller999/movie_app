@@ -57,21 +57,21 @@ function Signup({closePopup, liftToken}) {
           <div className="Signup">
             <h3>Create a new account</h3>
             <form onSubmit={handleSubmit}>
-              <label htmlFor="name">Name:</label>
+              {/* <label htmlFor="name">Name:</label> */}
               <input onChange={handleInputChange}
                       value={state.name}
                       type="text"
                       name="name"
                       className="nameInput"
                       placeholder="Enter name..."/><br />
-              <label htmlFor="email">Email:</label>
+              {/* <label htmlFor="email">Email:</label> */}
               <input onChange={handleInputChange}
                       value={state.email}
                       type="email"
                       name="email"
                       className="emailInput"
                       placeholder="Enter email..."/><br />
-              <label htmlFor="password">Password:</label>
+              {/* <label htmlFor="password">Password:</label> */}
               <input onChange={handleInputChange}
                       value={state.password}
                       type="password"

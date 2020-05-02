@@ -148,7 +148,7 @@ section {
 .results .result:hover h3 {
   /* background: #fff; */
   color: #0F9B8E;
-  transform: scale(1.07); 
+  transform: scale(1.09); 
   /* font-size: 15px; */
 }
 
@@ -158,7 +158,7 @@ section {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #445565b4;
+  background-color: #445565c5;
 
   overflow-y: scroll;
 }
@@ -166,7 +166,7 @@ section {
 .popup .content {
   display: block;
   width: 100%;
-  max-width: 960px;
+  max-width: 990px;
   margin: 0 auto;
   padding: 25px;
   background-color: #343837d5;
@@ -218,9 +218,9 @@ span.movie-info {
 
 .popup .content .plot .poster {
   flex: 1 1 50%;
-  max-width: 275px;
+  max-width: 265px;
   padding: 0px 15px;
-  height: 355px;
+  height: 350px;
   border-radius: 35px;
   margin-top: 10px;
 }
@@ -570,7 +570,7 @@ a {
 }
 
 .navTitle span {
-  font-size: 20px;
+  font-size: 22px;
   color: #0F9B8E;
 }
 

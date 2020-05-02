@@ -69,7 +69,7 @@ function Login({liftToken, onLoginClick, user,changeTitle}) {
           <div className="Login">
             <h3>Log into your account</h3>
             <form onSubmit={handleSubmit}>
-              <label htmlFor="email">Email:</label>
+              {/* <label htmlFor="email">Email:</label> */}
               <input onChange={handleEmailChange}
                       type="email"
                       value={state.email}
@@ -77,7 +77,7 @@ function Login({liftToken, onLoginClick, user,changeTitle}) {
                       placeholder="Enter email..."
                       className="emailInput"
                       /><br />
-              <label htmlFor="password">Password:</label>
+              {/* <label htmlFor="password">Password:</label> */}
               <input onChange={handlePasswordChange}
                       type="password"
                       value={state.password}
