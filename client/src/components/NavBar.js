@@ -5,6 +5,13 @@ import {
 
 function NavBar({user, liftToken, closePopup, logout}) {
 
+  async function themeChange() {
+    // e.preventDefault();
+    var body = document.getElementById("body");
+    var currentClass = body.className;
+    body.className = currentClass === "light-mode" ? "dark-mode" : "light-mode";
+  }
+
   // var user = user
   var contents
   if (user) {
@@ -32,6 +39,10 @@ function NavBar({user, liftToken, closePopup, logout}) {
 
   return (
     <nav className="navbar">
+      <input onChange={themeChange} type="checkbox" id="toggle" className="checkbox" />  
+      <label htmlFor="toggle" className="switch"></label>
+      {/* <input onClick={themeChange} type="checkbox" id="switch" />
+      <label for="switch">Toggle</label> */}
       {contents}
     </nav>
   )

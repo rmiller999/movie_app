@@ -48,6 +48,7 @@ function Login({liftToken, onLoginClick, user,changeTitle}) {
         // window.location.reload(false)
         liftToken(res.data)
         history.push('/');
+        // history.go(-2)
         changeTitle()
       }
     }).catch(err => {
