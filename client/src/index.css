@@ -62,7 +62,7 @@ section {
   background: none;
 
   background-color: rgb(89, 109, 117);
-  border-radius: 15px;
+  border-radius: 12px;
 
   color: #FFF;
   font-size: 14px;
@@ -701,7 +701,7 @@ a.noAcct {
 }
 /*////////////////////////////////////////////////////////////////////////////////////*/
 body.light-mode {
-  background-color: #fff;
+  background-color: #D7E1EC;
   color: #000;
 }  
 body.light-mode header {
@@ -752,7 +752,7 @@ body.light-mode main {
     background: none;
   
     background-color: rgb(89, 109, 117);
-    border-radius: 15px;
+    border-radius: 12px;
   
     color: #FFF;
     font-size: 14px;
@@ -958,7 +958,7 @@ body.light-mode main {
     padding: 7px;
     /* font-size: 22px; */
     color: #000;
-    background-color: #fff;
+    background-color: #D7E1EC;
     border: none;
     font-size: 24px;
     cursor: pointer;
@@ -1182,7 +1182,7 @@ body.light-mode main {
     transform: scale(1.17);
   }
   body.light-mode .navbar{
-    background-color: #fff;
+    background-color: #D7E1EC;
     padding: 27px;
     box-shadow: 0 4px 6px 0px rgba(0,0,0,.4);
   }
@@ -1202,11 +1202,11 @@ body.light-mode main {
   
   body.light-mode .navbuttons .login {
     color: #000;
-    border: 3px solid #03719C;
+    border: 3px solid #0F9B8E;
     border-radius: 8px;
     padding: 8px;
     margin: 5px;
-    background-color: #03719C;
+    background-color: #0F9B8E;
   }
   
   /* .navbuttons .login:hover {
@@ -1215,13 +1215,13 @@ body.light-mode main {
   
   body.light-mode .navbuttons .signup {
     color: #000;
-    border: 3px solid #03719C;
+    border: 3px solid #0F9B8E;
     border-radius: 8px;
     padding: 8px;
   }
   
   body.light-mode .navbuttons .signup:hover {
-    background-color: #03719C;
+    background-color: #0F9B8E;
     transition: 0.4s ease-out;
   }
   
@@ -1237,18 +1237,18 @@ body.light-mode main {
   
   body.light-mode .navbuttons .logout {
     color: #000;
-    border: 3px solid #03719C;
+    border: 3px solid #0F9B8E;
     border-radius: 8px;
     padding: 7px;
-    background-color: #03719C;
+    background-color: #0F9B8E;
     cursor: pointer;
     font-size: 16px;
     margin-top: -10px;
   }
   
   body.light-mode .navbuttons .logout:hover {
-    background-color: #03719C;
-    border: 3px solid #03719C;
+    background-color: #0F9B8E;
+    border: 3px solid #0F9B8E;
     /* color: #0F9B8E; */
   }
   
@@ -1398,7 +1398,8 @@ body.light-mode main {
   border-radius: 20px;
   transition: all 0.3s;
   left: 75%;
-  bottom: 7px;
+  bottom: 9px;
+  cursor: pointer;
 }
 .switch::after {
   content: '';
@@ -1416,7 +1417,7 @@ body.light-mode main {
   left :23px;
 }
 .checkbox:checked + .switch {
-  background-color: #7983ff;
+  background-color: #0F9B8E;
 }
 .checkbox {
   display : none;
