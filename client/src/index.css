@@ -849,7 +849,6 @@ body.light-mode main {
     width: 100vw;
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.781);
-  
     overflow-y: scroll;
   }
   
@@ -859,7 +858,7 @@ body.light-mode main {
     max-width: 990px;
     margin: 0 auto;
     padding: 25px;
-    background-color: #a3adabd5;
+    background-color: rgba(215, 225, 236, 0.835);
     border-radius: 25px;
     color: #000;
   }
@@ -1352,11 +1351,11 @@ body.light-mode main {
     position: absolute;
     margin-left: 500px;
     margin-top: -50px;
-    color: #fff;
+    color: #000;
   }
   
   body.light-mode .icon {
-    color: rgba(255, 255, 255, 0.76) !important;
+    color: rgba(124, 122, 122, 0.76) !important;
     font-size: 20px !important;
   }
   
