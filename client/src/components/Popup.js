@@ -178,8 +178,8 @@ function Popup({selected, closePopup, changeSelected, user}) {
             {actors.map((actor,i) => (
               <div key={i} className="info">
                 <img className="actorImg" alt={actor.name} src={actor.profile_path === null ? logo : 'https://image.tmdb.org/t/p/w200/'+actor.profile_path}></img>
-                <p key={i} className="actor">{actor.name}</p>
-                <p className="actor-role">{actor.character.slice(0,20)}</p>
+                <p key={i} className="actor">{actor.name.slice(0,15)}</p>
+                <p className="actor-role">{actor.character.slice(0,15)}</p>
               </div>
             ))}
           </div>
