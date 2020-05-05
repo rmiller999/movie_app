@@ -123,16 +123,7 @@ function Popup({selected, closePopup, changeSelected, user}) {
     return rhours + "h " + rminutes + "m";
   }
   const actors = state.cast;
-  // var actorImage = ''
-  // actors.map((actor,i) => {
-  //   var actorSrc = actor.profile_path
-  //   console.log(actorSrc)
-  //   if(actorSrc === null) {
-  //     actorImage = logo
-  //   } else {
-  //     actorImage = `https://image.tmdb.org/t/p/w200/${actorSrc}`
-  //   }
-  // })
+
   // var newLine = '';
   // for(let i = 0; i < actors.length; i++) {
   //   if(actors[i].name.length > 18) {
@@ -176,14 +167,9 @@ function Popup({selected, closePopup, changeSelected, user}) {
           ))}
         </p>
         <span className="movie-info">{timeConvert(runtime)}</span>
-        {/* <section className="PlainRater"> */}
         <div className="movieRating">
           {noUser}
-          {/* <p>Your Rating</p>
-          <Rating onRate={handleRate} maxRating={5} rating={state.rating} icon='star' size='large' /> */}
-
         </div>
-        {/* </section>  */}
         <div className="plot">
           <img className="poster" src={image} alt="Movie Poster" />
           <p className="summary">{selected.overview}</p>
@@ -191,7 +177,7 @@ function Popup({selected, closePopup, changeSelected, user}) {
           <div className="cast-info">
             {actors.map((actor,i) => (
               <div key={i} className="info">
-                <img className="actorImg" alt={actor.name} src={'https://image.tmdb.org/t/p/w200/'+actor.profile_path}></img>
+                <img className="actorImg" alt={actor.name} src={actor.profile_path === null ? logo : 'https://image.tmdb.org/t/p/w200/'+actor.profile_path}></img>
                 <p key={i} className="actor">{actor.name}</p>
                 <p className="actor-role">{actor.character.slice(0,20)}</p>
               </div>
