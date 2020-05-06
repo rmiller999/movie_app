@@ -10,20 +10,22 @@ function Category({category, handleCategoryChange}) {
     categoryName = "Now Playing"
   }
   return (
-    <div className="dropdown">
-      <input className="dropbtn" type="submit" value={categoryName} />
-      <div className="dropdown-content">
-        <a href="/#" className="dropdown__item"
+      // {/* <input  type="submit" value={categoryName} /> */}
+      <div className="categories">
+        <a href="/#" 
           name='popular'
+          className={categoryName === "Popularity" ? 'activeCategory' : ''}
           onClick={e => handleCategoryChange(e.currentTarget.name)}>Popularity</a>
-        <a href="/#" className="dropdown__item"
+        <a href="/#" 
           name='top_rated'
+          className={categoryName === "Top Rated" ? 'activeCategory' : ''}
           onClick={e => handleCategoryChange(e.currentTarget.name)}>Top Rated</a>
-        <a href="/#" className="dropdown__item"
+        <a href="/#" 
           name='now_playing'
+          className={categoryName === "Now Playing" ? 'activeCategory' : ''}
           onClick={e => handleCategoryChange(e.currentTarget.name)}>Now Playing</a>
       </div>
-  </div>
+
   )
 }
 

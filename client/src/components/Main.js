@@ -151,7 +151,7 @@ function Main({user,liftToken}) {
     const data = await res.data.results;
     // console.log(page)
     setState(prevState => {
-      return {...prevState, results: data}
+      return {...prevState, results: data, genre: 0}
     })
   }
   async function changeSelected(movieId,rating) {
@@ -194,7 +194,7 @@ function Main({user,liftToken}) {
     // console.log(res)
     // console.log(page)
     setState(prevState => {
-      return {...prevState, results: data, pages: pagesList, page: 1}
+      return {...prevState, results: data, pages: pagesList, page: 1, category: ''}
     })
   }
 

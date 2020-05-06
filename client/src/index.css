@@ -50,11 +50,12 @@ section {
   /* width: 50%; */
   text-align: center;
   padding-left: 155px;
+  margin-bottom: 5%;
 }
 
 .searchbox {
   display: block;
-  width: 50%;
+  width: 65%;
   padding: 9px;
 
   border: none;
@@ -72,11 +73,11 @@ section {
 }
 
 .searchbox:focus {
-  box-shadow: 0px 0px 2px 2px #0F9B8E;
+  box-shadow: 0px 0px 5px 3px #0F9B8E;
 }
 
 .searchbox:hover {
-  box-shadow: 0px 0px 2px 2px #0F9B8E;
+  box-shadow: 0px 0px 5px 3px #0F9B8E;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -469,9 +470,16 @@ img.card:hover {
 }
 
 .genres {
-  left: 75px;
-  margin-top: 0px;
+  left: 63px;
+  margin-top: 10%;
   position: absolute;
+  /* border: solid 1px #D7E1EC;
+  border-radius: 10px;
+  border-spacing: 100px; */
+}
+
+.genres h3 {
+  padding: 5px;
 }
 
 .genres li {
@@ -479,6 +487,8 @@ img.card:hover {
   cursor: pointer;
   font-size: 22px;
   padding: 5px;
+  padding-left: 13px;
+  padding-right: 10px;
   color: #D7E1EC;
 }
 
@@ -488,7 +498,7 @@ img.card:hover {
 }
 
 .activeGenre {
-  color: #0F9B8E;
+  color: #0F9B8E !important;
   transform: scale(1.17);
 }
 .navbar{
@@ -744,7 +754,7 @@ body.light-mode main {
   
   body.light-mode .searchbox {
     display: block;
-    width: 50%;
+    width: 65%;
     padding: 9px;
   
     border: none;
@@ -762,11 +772,11 @@ body.light-mode main {
   }
   
   body.light-mode .searchbox:focus {
-    box-shadow: 0px 0px 2px 2px #0F9B8E;
+    box-shadow: 0px 0px 5px 3px #0F9B8E;
   }
   
   body.light-mode .searchbox:hover {
-    box-shadow: 0px 0px 2px 2px #0F9B8E;
+    box-shadow: 0px 0px 5px 3px #0F9B8E;
   }
   
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -1159,7 +1169,7 @@ body.light-mode main {
   
   body.light-mode .genres {
     left: 75px;
-    margin-top: 0px;
+    margin-top: 10%;
     position: absolute;
   }
   
@@ -1186,19 +1196,6 @@ body.light-mode main {
     box-shadow: 0 4px 6px 0px rgba(0,0,0,.4);
   }
   
-  body.light-mode .navbar .navbuttons{
-    float: right;
-    /* display: inline; */
-  }
-  
-  body.light-mode .navbuttons {
-    margin-top: -9px;
-  }
-  
-  body.light-mode a {
-    text-decoration: none;
-  }
-  
   body.light-mode .navbuttons .login {
     color: #000;
     border: 3px solid #0F9B8E;
@@ -1207,11 +1204,7 @@ body.light-mode main {
     margin: 5px;
     background-color: #0F9B8E;
   }
-  
-  /* .navbuttons .login:hover {
-    background-color: #03719C;
-  } */
-  
+
   body.light-mode .navbuttons .signup {
     color: #000;
     border: 3px solid #0F9B8E;
@@ -1261,20 +1254,6 @@ body.light-mode main {
   body.light-mode .navTitle span {
     font-size: 22px;
     color: #0F9B8E;
-  }
-  
-  body.light-mode .Login {
-    text-align: center;
-    padding: 10px;
-  }
-  
-  body.light-mode .Signup {
-    text-align: center;
-    padding: 10px;
-  }
-  
-  body.light-mode form {
-    text-align: center;
   }
   
   body.light-mode .emailInput, .passwordInput, .nameInput {
@@ -1327,25 +1306,6 @@ body.light-mode main {
     background: #03719C;
   }
   
-  body.light-mode #loginPopup {
-    width: 50%;
-    margin-top: 5%;
-  }
-  
-  body.light-mode #signupPopup {
-    width: 50%;
-    margin-top: 5%;
-  }
-  
-  body.light-mode .noVideos {
-    margin-top: 40px;
-    margin-left: 300px;
-  }
-  
-  body.light-mode .icon:focus{
-    outline: 0;
-  }
-  
   body.light-mode .movieRating {
     /* border: 1px solid #fff; */
     position: absolute;
@@ -1391,15 +1351,15 @@ body.light-mode main {
 .switch {
   position: relative;
   display: inline-block;
-  width: 50px;
+  width: 55px;
   height: 28px;
-  background: url(../src/icons8-sun-30.png) no-repeat 25px;
-  background-size: 24px 24px;
+  background: url(../src/icons8-sun-30.png) no-repeat 28px;
+  background-size: 23px 23px;
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   transition: all 0.5s;
   left: 75%;
-  bottom: 11px;
+  bottom: 13px;
   cursor: pointer;
 }
 .switch::after {
@@ -1415,7 +1375,7 @@ body.light-mode main {
 }
 
 .checkbox:checked + .switch::after {
-  left :24px;
+  left :29px;
 }
 .checkbox:checked + .switch {
   background: url(../src/icons8-moon-symbol-50.png) no-repeat;
@@ -1425,4 +1385,37 @@ body.light-mode main {
 }
 .checkbox {
   display : none;
+}
+
+.categories {
+  position: absolute;
+  left: 5%;
+}
+
+.categories a {
+  display: block;
+  list-style-type: none;
+  cursor: pointer;
+  font-size: 22px;
+  padding: 5px;
+  color: #D7E1EC;
+}
+
+body.light-mode .categories a {
+  color: #000;
+}
+
+.categories a:hover {
+  border: solid 1px;
+  border-radius: 5px;
+}
+
+.activeCategory {
+  border: solid 1px #D7E1EC;
+  border-radius: 5px;
+  color: #0F9B8E !important;
+}
+
+body.light-mode .activeCategory {
+  border: solid 1px #000;
 }
