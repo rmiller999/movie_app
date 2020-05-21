@@ -1435,12 +1435,11 @@ body.light-mode .activeCategory {
 .clearSearch {
   border: 1px solid transparent;
 	background-color: transparent;
-	display: inline-block;
-	vertical-align: middle;
+	display: block;
   outline: 0;
   cursor: pointer;
-  margin-left: 27%;
-  margin-top: -6.7%;
+  margin-left: 62%;
+  margin-top: -25px;
 }
 
 .clearSearch:after {
@@ -1448,22 +1447,25 @@ body.light-mode .activeCategory {
 	display: block;
 	width: 15px;
 	height: 15px;
-	position: relative;
 	background-color: rgb(120, 147, 158);
 	z-index:1;
 	right: 30%;
 	top: 0;
-	bottom: 70%;
 	margin: auto;
   padding: 2px;
 	border-radius: 50%;
 	text-align: center;
-	color: white;
+	color: #D7E1EC;
 	font-weight: normal;
 	font-size: 12px;
 	box-shadow: 0 0 2px rgb(89, 109, 117);
 	cursor: pointer;
 }
-.searchbox:not(:valid) ~ .clearSearch {
-	display: none;
+
+.hidden {
+  display: none;
+}
+
+.hidden:after {
+  height: 10px;
 }

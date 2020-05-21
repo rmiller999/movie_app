@@ -263,7 +263,7 @@ function Main({user,liftToken}) {
       </header> */}
       <div className="container">
         <main>
-          <Search handleInput={handleInput} search={search} clearSearch={clearSearch}/>
+          <Search handleInput={handleInput} search={search} clearSearch={clearSearch} s={state.s}/>
           <Category category={state.category} handleCategoryChange={handleCategoryChange}/>
           <SideBar genrePageChange={genrePageChange} genre={state.genre} page={state.page} pages={state.pages} genres={state.genres} handleGenreChange={handleGenreChange} />
           <Results s={state.s} results={state.results} openPopup={openPopup} user={user} />
