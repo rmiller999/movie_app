@@ -117,8 +117,8 @@ section {
 }
 
 .results .result:hover img {
-  opacity: 0.8;
-  transform: scale(1.09);
+  opacity: 0.7;
+  transform: scale(1.05);
   box-shadow: 0px 0px 5px 3px #0F9B8E;
 }
 
@@ -816,9 +816,9 @@ body.light-mode main {
   }
   
   body.light-mode .results .result:hover img {
-    opacity: 0.8;
-    transform: scale(1.09);
-    box-shadow: 0px 0px 5px 3px #0F9B8E;
+    opacity: 0.9;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 6px 4px #0F9B8E;
   }
   
   body.light-mode .results .result h3 {
@@ -1352,25 +1352,25 @@ body.light-mode main {
   position: relative;
   display: inline-block;
   width: 55px;
-  height: 28px;
+  height: 29px;
   background: url(../src/icons8-sun-30.png) no-repeat 28px;
   background-size: 23px 23px;
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   transition: all 0.5s;
-  left: 75%;
+  left: 73%;
   bottom: 13px;
   cursor: pointer;
 }
 .switch::after {
   content: '';
   position: absolute;
-  width: 24px;
+  width: 23px;
   height: 24px;
   border-radius:50%;
   background-color: white;
   top: 2px;
-  left: 1px;
+  left: 3px;
   transition: all 0.5s;
 }
 
@@ -1379,7 +1379,7 @@ body.light-mode main {
 }
 .checkbox:checked + .switch {
   background: url(../src/icons8-moon-symbol-50.png) no-repeat;
-  background-position: 2px;
+  background-position: 1px;
   background-size: 22px 22px;
   background-color: #0F9B8E;
 }
@@ -1418,4 +1418,52 @@ body.light-mode .categories a {
 
 body.light-mode .activeCategory {
   border: solid 1px #000;
+}
+
+.streaming {
+  position: absolute;
+  margin-left: 250px;
+  margin-top: -55px;
+}
+
+.netflix {
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.clearSearch {
+  border: 1px solid transparent;
+	background-color: transparent;
+	display: inline-block;
+	vertical-align: middle;
+  outline: 0;
+  cursor: pointer;
+  margin-left: 27%;
+  margin-top: -6.7%;
+}
+
+.clearSearch:after {
+	content: "X";
+	display: block;
+	width: 15px;
+	height: 15px;
+	position: relative;
+	background-color: rgb(120, 147, 158);
+	z-index:1;
+	right: 30%;
+	top: 0;
+	bottom: 70%;
+	margin: auto;
+  padding: 2px;
+	border-radius: 50%;
+	text-align: center;
+	color: white;
+	font-weight: normal;
+	font-size: 12px;
+	box-shadow: 0 0 2px rgb(89, 109, 117);
+	cursor: pointer;
+}
+.searchbox:not(:valid) ~ .clearSearch {
+	display: none;
 }

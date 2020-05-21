@@ -43,7 +43,8 @@ function Main({user,liftToken}) {
       { id: 37, name: "Western" }
     ],
     genre: 0,
-    rating: 0
+    rating: 0,
+    onNetflix: false
     });
 
   // async function fetchData() {
@@ -87,6 +88,20 @@ function Main({user,liftToken}) {
       }
     // }
   }
+
+  async function clearSearch(e) {
+    let s = e.target.value;
+    document.getElementById("searchForm").value = "";
+    const res = await axios(`https://api.themoviedb.org/3/movie/${state.category}?api_key=${apiKey}&language=en-US&page=${state.page}`)
+    const data = await res.data.results;
+        setState(prevState => {
+          return {...prevState, results: data}
+        })
+    setState(prevState => {
+      return {...prevState, s: s, page: 1, category: state.category, genre: state.genre}
+    })
+  }
+
   async function handlePageChange(page,s,results,genre) {
     if(state.s === '' && state.genre === 0) {
       const res = await axios(`https://api.themoviedb.org/3/movie/${state.category}?api_key=${apiKey}&language=en-US&page=${page}`)
@@ -154,9 +169,23 @@ function Main({user,liftToken}) {
       return {...prevState, results: data, genre: 0}
     })
   }
-  async function changeSelected(movieId,rating) {
+  async function changeSelected(movieId,rating,onNetflix) {
     axios(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`).then(({data}) => {
       let result = data;
+      setState(prevState => {
+        return {...prevState, onNetflix: false}
+      }) 
+      // const titleFix = result.original_title.replace(/ /g,"_");
+      // const release_date = result.release_date.slice(0,4);
+      // console.log(titleFix)
+      // axios.post('/scrape', {
+      //   movie: titleFix,
+      // }).then(res => {
+      //   console.log('from main',res)
+      //   setState(prevState => {
+      //     return {...prevState, onNetflix: true}
+      //   }) 
+      // })
       if (user) {
         axios.get(`users/${user._id}/ratings`).then((res) => {
           var ratings = res.data;
@@ -234,12 +263,12 @@ function Main({user,liftToken}) {
       </header> */}
       <div className="container">
         <main>
-          <Search handleInput={handleInput} search={search}/>
+          <Search handleInput={handleInput} search={search} clearSearch={clearSearch}/>
           <Category category={state.category} handleCategoryChange={handleCategoryChange}/>
           <SideBar genrePageChange={genrePageChange} genre={state.genre} page={state.page} pages={state.pages} genres={state.genres} handleGenreChange={handleGenreChange} />
           <Results s={state.s} results={state.results} openPopup={openPopup} user={user} />
           <PageButtons page={state.page} pages={state.pages} handlePageChange={handlePageChange}/>
-          {(typeof state.selected.original_title != "undefined") ? <Popup liftToken={liftToken} user={user} selected={state.selected} closePopup={closePopup} changeSelected={changeSelected} /> : false}
+          {(typeof state.selected.original_title != "undefined") ? <Popup liftToken={liftToken} user={user} selected={state.selected} closePopup={closePopup} changeSelected={changeSelected} onNetflix={state.onNetflix} /> : false}
         </main>
 
       </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../not.jpg';
+import netflix from '../netflix.jpeg';
 import axios from 'axios';
 import 'react-rater/lib/react-rater.css'
 import { Rating } from 'semantic-ui-react'
@@ -10,7 +11,7 @@ import {
 const apiKey = '523e9d0683b307c83c56fc95d6c14367';
 
 
-function Popup({selected, closePopup, changeSelected, user}) {
+function Popup({selected, closePopup, changeSelected, user, onNetflix}) {
   const [state, setState] = useState({
     similar: [],
     videos: [],
@@ -45,11 +46,49 @@ function Popup({selected, closePopup, changeSelected, user}) {
       return {...prevState, videos: data, videosLoading: false}
     })
   }
+
+  // async function onNetflix(selected) {
+  //   // setState(prevState => {
+  //   //     return {...prevState, onNetflix: false}
+  //   //   }) 
+  //   const titleFix = selected.original_title.replace(/ /g,"_");
+  //   const release_date = selected.release_date.slice(0,4);
+  //   console.log(titleFix)
+  //   axios.post('/scrape', {
+  //     movie: titleFix,
+  //   }).then(res => {
+  //     console.log('hellllllo')
+  //     console.log(res)
+  //     if(selected.original_title === res.data) {
+  //       setState(prevState => {
+  //         return {...prevState, onNetflix: true}
+  //       }) 
+  //     } else {
+  //       setState(prevState => {
+  //         return {...prevState, onNetflix: false}
+  //       }) 
+  //     }
+  //   })
+  // }
+
   var noUser;
   useEffect(() => {
+    // const titleFix = selected.original_title.replace(/ /g,"_");
+    // const release_date = selected.release_date.slice(0,4);
+    // // console.log(titleFix)
+    // axios.post('/scrape', {
+    //   movie: titleFix,
+    // }).then(res => {
+    //   console.log(res)
+    //   setState(prevState => {
+    //     return {...prevState, onNetflix: true}
+    //   }) 
+    // })
+
     similarMovies(selected);
     movieVideos(selected);
     getCast(selected);
+    // onNetflix(selected)
     if (user) {
       axios.get(`users/${user._id}/ratings`).then((res) => {
         var ratings = res.data;
@@ -95,15 +134,7 @@ function Popup({selected, closePopup, changeSelected, user}) {
     })
 
   }
-  // const changeSelected = movieId => {
-  //   axios(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`).then(({data}) => {
-  //     let result = data;
-  //     console.log(result)
-  //     setState(prevState => {
-  //       return {...prevState, selected: result}
-  //     })
-  //   })
-  // }
+
   const src = selected.poster_path;
   const release_date = selected.release_date.slice(0,4);
   let image = ''
@@ -153,6 +184,14 @@ function Popup({selected, closePopup, changeSelected, user}) {
     noVideos = <h5 className="noVideos">({selected.original_title} has no videos)</h5>
   }
 
+  var netflixLogo;
+  if(state.onNetflix === true) {
+    netflixLogo = <img className="netflix" src={netflix}></img>
+  } else {
+    netflixLogo = ''
+  }
+
+
   videos = state.videos.slice(0,5)
   var body = document.getElementsByTagName('body')[0];
   body.classList.add("noscroll")
@@ -167,6 +206,9 @@ function Popup({selected, closePopup, changeSelected, user}) {
           ))}
         </p>
         <span className="movie-info">{timeConvert(runtime)}</span>
+        <div className="streaming">
+          {netflixLogo}
+        </div>
         <div className="movieRating">
           {noUser}
         </div>

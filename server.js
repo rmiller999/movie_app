@@ -141,6 +141,55 @@ app.get('/ratings/:id', (req,res) => {
   })
 });
 
+const rp = require('request-promise');
+const $ = require('cheerio');
+
+
+app.post('/scrape', function(req, res){
+  console.log(req.body.movie)
+  // const url = `https://usa.newonnetflix.info/catalog/search/${req.body.movie}#results`;
+  // rp(url)
+  // .then(function(html){
+  //   //success!
+  //   console.log($('article > div > a > img',html).length);
+  //   console.log($('article > div > a > img',html)[0].attribs.alt);
+  //   const onNetflix = ($('article > div > a > img',html)[0].attribs.alt)
+  //   res.json(onNetflix)
+  // })
+  // .catch(function(err){
+  //   //handle error
+  //   // console.log(err)
+  // })
+  const titleFix = req.body.movie.replace(/_/g," ");
+  const url = `https://usa.newonnetflix.info/catalog/search/${req.body.movie}#results`;
+  rp(url)
+  .then(function(html){
+    //success!
+    var onNetflix = '';
+    console.log($('article > div > a > img',html).length);
+    console.log(titleFix)
+    if($('article > div > a > img',html).length === 0) {
+      res.json(onNetflix)
+    } else {
+      for (let i = 0; i < $('article > div > a > img',html).length; i++) {
+        console.log($('article > div > a > img',html)[i].attribs.alt)
+        console.log('FOR LOOP',onNetflix)
+        if(titleFix === $('article > div > a > img',html)[i].attribs.alt) {
+          console.log('YESSSSSSSSSSSSSSS')
+          onNetflix = $('article > div > a > img',html)[i].attribs.alt
+          console.log('Netflix',onNetflix)
+          res.json(onNetflix)
+        } else {
+          console.log('NOOOOOOOOOOOOOOOO')
+        }
+      }
+
+    }
+    // console.log($('article > div > a > img',html)[0].attribs.alt);
+    // onNetflix = ($('article > div > a > img',html)[0].attribs.alt)
+  })
+})
+
 app.get('/*', (req,res) =>{
   res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
@@ -148,6 +197,7 @@ app.get('/*', (req,res) =>{
 // app.use('/auth/signup', signLimiter);
 
 app.use('/auth', require('./routes/auth'));
+// app.use('/onNetflix', require('./routes/onNetflix'));
 app.use('/api', expressJWT({secret: process.env.JWT_SECRET}), require('./routes/api'));
 
 app.listen(process.env.PORT, () => {
