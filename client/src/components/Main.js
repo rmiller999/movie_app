@@ -46,12 +46,12 @@ function Main({user,liftToken}) {
     });
 
 
-  const apiurl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false`;
+  const apiurl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false`;
 
   async function search(e) {
     // if(e.key === 'Enter') {
       if(state.s === '') {
-        const res = await axios(`https://api.themoviedb.org/3/movie/${state.category}?api_key=${API_KEY}&language=en-US&page=${state.page}`)
+        const res = await axios(`https://api.themoviedb.org/3/movie/${state.category}?api_key=${apiKey}&language=en-US&page=${state.page}`)
         const data = await res.data.results;
         setState(prevState => {
           return {...prevState, results: data}
@@ -73,7 +73,7 @@ function Main({user,liftToken}) {
   async function clearSearch(e) {
     let s = e.target.value;
     document.getElementById("searchForm").value = "";
-    const res = await axios(`https://api.themoviedb.org/3/movie/${state.category}?api_key=${API_KEY}&language=en-US&page=${state.page}`)
+    const res = await axios(`https://api.themoviedb.org/3/movie/${state.category}?api_key=${apiKey}&language=en-US&page=${state.page}`)
     const data = await res.data.results;
         setState(prevState => {
           return {...prevState, results: data}
@@ -85,14 +85,14 @@ function Main({user,liftToken}) {
 
   async function handlePageChange(page,s,results,genre) {
     if(state.s === '' && state.genre === 0) {
-      const res = await axios(`https://api.themoviedb.org/3/movie/${state.category}?api_key=${API_KEY}&language=en-US&page=${page}`)
+      const res = await axios(`https://api.themoviedb.org/3/movie/${state.category}?api_key=${apiKey}&language=en-US&page=${page}`)
       const data = await res.data.results;
     // // console.log(page)
       setState(prevState => {
         return {...prevState, results: data}
       })
     }  if(state.genre > 0) {
-        const res = await axios(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${state.genre}&include_adult=false&page=${page}`)
+        const res = await axios(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&with_genres=${state.genre}&include_adult=false&page=${page}`)
         const data = await res.data.results;
         // console.log(data)
         setState(prevState => {
@@ -122,7 +122,7 @@ function Main({user,liftToken}) {
   }
 
   const openPopup = id => {
-    axios(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`).then(({data}) => {
+    axios(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`).then(({data}) => {
       let result = data;
 
       setState(prevState => {
@@ -143,7 +143,7 @@ function Main({user,liftToken}) {
     setState(prevState => {
       return {...prevState, category: category}
     });
-    const res = await axios(`https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=en-US&page=${state.page}`)
+    const res = await axios(`https://api.themoviedb.org/3/movie/${category}?api_key=${apiKey}&language=en-US&page=${state.page}`)
     const data = await res.data.results;
     // console.log(page)
     setState(prevState => {
@@ -151,7 +151,7 @@ function Main({user,liftToken}) {
     })
   }
   async function changeSelected(movieId,rating,onNetflix) {
-    axios(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`).then(({data}) => {
+    axios(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`).then(({data}) => {
       let result = data;
       setState(prevState => {
         return {...prevState, onNetflix: false}
@@ -198,7 +198,7 @@ function Main({user,liftToken}) {
       return {...prevState, genre: genre}
     });
     // console.log("genre:", genre)
-    const res = await axios(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${genre}&include_adult=false&page=${page}`)
+    const res = await axios(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&with_genres=${genre}&include_adult=false&page=${page}`)
     const data = await res.data.results;
     const pagesList = res.data.total_pages;
     // console.log(res)
@@ -210,7 +210,7 @@ function Main({user,liftToken}) {
 
   async function genrePageChange(genre,page) {
     if(state.genre > 0) {
-      const res = await axios(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=${state.category}&with_genres=${genre}&include_adult=false&page=${page}`)
+      const res = await axios(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=${state.category}&with_genres=${genre}&include_adult=false&page=${page}`)
       const data = await res.data.results;
       // console.log(page)
       setState(prevState => {
@@ -223,7 +223,7 @@ function Main({user,liftToken}) {
   useEffect(() => {
     async function fetchData() {
       if(state.s === '') {
-        const res = await axios(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US`)
+        const res = await axios(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US`)
         const pagesList = await res.data.total_pages;
         const data = await res.data.results;
         // console.log(pagesList)
