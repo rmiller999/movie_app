@@ -12,7 +12,6 @@ import {
 const API_KEY = process.env.REACT_APP_KEY;
 
 function App() {
-  console.log(process.env.REACT_APP_KEY)
 
   const [state, setState] = useState({
       token: '',
