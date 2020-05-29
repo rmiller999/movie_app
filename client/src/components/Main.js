@@ -9,7 +9,6 @@ import axios from 'axios';
 
 const apiKey = '523e9d0683b307c83c56fc95d6c14367';
 const API_KEY = process.env.REACT_APP_KEY;
-// console.log(process.env.API_KEY)
 
 function Main({user,liftToken}) {
   // console.log("Main",user)
