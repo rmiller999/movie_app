@@ -9,7 +9,11 @@ import {
   Route
 } from 'react-router-dom';
 
+const API_KEY = process.env.REACT_APP_KEY;
+
 function App() {
+  console.log(process.env.REACT_APP_KEY)
+
   const [state, setState] = useState({
       token: '',
       user: null,
@@ -50,10 +54,7 @@ function App() {
     setState(prevState => {
       return {...prevState, token: token, user: user}
     })
-    // setState({
-    //   token,
-    //   user
-    // })
+
   }
 
   const logout = () => {
@@ -63,10 +64,7 @@ function App() {
     setState(prevState => {
       return {...prevState, token: '', user: null}
     })
-    // this.setState({
-    //   token: '',
-    //   user: null
-    // })
+
   }
 
   const onLoginClick = () => {
@@ -74,12 +72,6 @@ function App() {
       return {...prevState, showLogin: true}
     })
   }
-
-  // const onSignUpClick = () => {
-  //   setState(prevState => {
-  //     return {...prevState, showSignUp: true}
-  //   })
-  // }
 
   const closePopup = () => {
     setState(prevState => {
@@ -96,38 +88,6 @@ function App() {
       </>
     )} />
   )
-  
-  // const userUpdate = () => {
-  //   setState(prevState => {
-  //     return {...prevState, user: user}
-  //   });
-  //   var user = state.user
-  //   // var contents
-  //   // if (user) {
-  //   //   contents = (
-  //   //     <>
-  //   //     <>
-  //   //       {/* <div className="navbuttons">
-  //   //         <p className="userName">Hello, {user.name}</p>
-  //   //         <button className="logout" onClick={logout}>Logout</button>
-            
-  //   //       </div> */}
-  //   //     </>
-  //   //     {mainContent}
-  //   //     </>
-  //   //   );
-  //   // } else {
-  //   //   // document.title = "My Movies.DB";
-  //   //   contents = (
-  //   //     <>
-  //   //       {mainContent}
-  //   //     </>
-  //   //   )
-  //   // }
-  //   setState(prevState => {
-  //     return {...prevState, user: user}
-  //   });
-  // }
 
   useEffect(() => {
     checkForLocalToken()

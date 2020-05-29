@@ -22,6 +22,7 @@ function Category({category, handleCategoryChange}) {
           onClick={e => handleCategoryChange(e.currentTarget.name)}>Top Rated</a>
         <a href="/#" 
           name='now_playing'
+          id="nowPlaying"
           className={categoryName === "Now Playing" ? 'activeCategory' : ''}
           onClick={e => handleCategoryChange(e.currentTarget.name)}>Now Playing</a>
       </div>
