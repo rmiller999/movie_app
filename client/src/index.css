@@ -1497,3 +1497,14 @@ body.light-mode .categories a:hover {
   box-shadow: 1px 1px 9px 0px rgba(0,0,0,.35);
 }
 
+@media only screen and (max-width: 600px) {
+  .genres {
+    display: none;
+  }
+  .categories {
+    display: none;
+  }
+  .navbar {
+    width: 600px;
+  }
+}
