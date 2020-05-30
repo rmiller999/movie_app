@@ -1511,7 +1511,8 @@ and (-webkit-min-device-pixel-ratio: 3) {
   }
   .navbar {
     width: 600px;
-    height: 60px;
+    height: 90px;
+    padding-top: 70px;
   }
   .switch {
     left: 40%;
