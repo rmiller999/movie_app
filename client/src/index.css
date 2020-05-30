@@ -1497,7 +1497,12 @@ body.light-mode .categories a:hover {
   box-shadow: 1px 1px 9px 0px rgba(0,0,0,.35);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-device-width: 375px) 
+and (max-device-width: 812px) 
+and (-webkit-min-device-pixel-ratio: 3) {
+  /* body {
+    width: 100%;
+  } */
   .genres {
     display: none;
   }
@@ -1506,5 +1511,46 @@ body.light-mode .categories a:hover {
   }
   .navbar {
     width: 600px;
+    height: 60px;
+  }
+  .switch {
+    left: 40%;
+  }
+  .searchbox-wrap {
+    width: 850px;
+    padding-left: 30px;
+    padding-bottom: 35px;
+  }
+  .results {
+    /* display: inline; */
+  }
+  .results .result {
+    width: 50%;
+  }
+
+  .result {
+    width: 100%;
+  }
+  .popup {
+    width: 70%;
+    height: 100%;
+  }
+  .movieRating {
+    right: 20%;
+  }
+  .videos {
+    margin-top: 575px;
+  }
+  .scrolling-wrapper-video {
+    padding-top: 245px;
+  }
+  .cast {
+    margin-top: 380px;
+    margin-left: 30px;
+  }
+  .cast-info {
+    margin-top: 400px;
+    margin-left: 25px;
+    width: 80%;
   }
 }
